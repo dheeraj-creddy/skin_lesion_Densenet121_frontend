@@ -22,7 +22,7 @@ export default function CifarApp() {
         setResult(null);
 
         try {
-            const response = await fetch("https://skin-lesion-densenet121-api.onrender.com", {
+            const response = await fetch("https://skin-lesion-densenet121-api.onrender.com/predict", {
                 method: "POST",
                 body: formData,
             });
@@ -45,14 +45,14 @@ export default function CifarApp() {
                     <div className="card shadow-lg border-0 rounded-4">
                         <div className="card-body p-5 text-center">
                             <h1 className="fw-bold mb-3 text-primary">
-                                CIFAR Image Classifier
+                                Skin Lesion Grading
                             </h1>
                             <p className="text-muted mb-4">
-                                Upload an image and let the AI classify it into one of the 10 CIFAR categories:
+                                Upload an image and let the AI grade it into one of the 7 Skin Lesion categories:
                             </p>
 
                             <div className="d-flex justify-content-center flex-wrap mb-4">
-                                {["Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck"].map((c) => (
+                                {['akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc'].map((c) => (
                                     <span key={c} className="badge bg-light text-dark m-1 px-3 py-2">
                     {c}
                   </span>
@@ -71,7 +71,7 @@ export default function CifarApp() {
                                     src={preview}
                                     alt="preview"
                                     className="img-fluid rounded mb-3 shadow-sm"
-                                    style={{ maxHeight: "300px" }}
+                                    style={{maxHeight: "300px"}}
                                 />
                             )}
 
@@ -84,7 +84,8 @@ export default function CifarApp() {
                             </button>
                             <p className="text-muted mb-4">_</p>
                             <div className="d-flex justify-content-center flex-wrap mb-3">
-                                ! the back end is running on a free tier instance, it spins down with inactivity, which can delay requests by 50 seconds or more.
+                                ! the back end is running on a free tier instance, it spins down with inactivity, which
+                                can delay requests by 50 seconds or more.
                             </div>
 
                             {result && (
@@ -99,6 +100,16 @@ export default function CifarApp() {
                                     )}
                                 </div>
                             )}
+
+                            <div className="d-flex justify-content-center flex-wrap mb-3">
+                                'akiec' = Actinic keratoses/Bowen’s disease ||
+                                'bcc' = Basal cell carcinoma ||
+                                'bkl' = Benign keratosis-like lesions ||
+                                'df' = Dermatofibroma ||
+                                'mel' = Melanoma ||
+                                'nv' = Melanocytic nevi ||
+                                'vasc' = Vascular lesions
+                            </div>
                         </div>
                     </div>
                 </div>
