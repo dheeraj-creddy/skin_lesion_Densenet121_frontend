@@ -22,7 +22,7 @@ export default function CifarApp() {
         setResult(null);
 
         try {
-            const response = await fetch("https://skin-lesion-densenet121-api.onrender.com/predict", {
+            const response = await fetch("https://skin-lesion-densenet121-api-1.onrender.com/predict", {
                 method: "POST",
                 body: formData,
             });
